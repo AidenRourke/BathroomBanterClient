@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-class MainPage extends Component {
-
+class SearchResults extends Component {
   render() {
     return (
       <div>
-        Hello
+        Search Results
       </div>
     );
   }
 }
 
-export default MainPage;
+export default SearchResults;
