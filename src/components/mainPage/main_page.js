@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import SearchForm from './search_form';
-import SearchResults from './search_results'
+import SearchForm from './search/search_form';
+import SearchResults from './results/search_results'
 
 class MainPage extends Component {
 
@@ -10,8 +10,6 @@ class MainPage extends Component {
       <div className="MainPage">
 
         <SearchForm />
-
-        <SearchResults />
 
       </div>
     );
