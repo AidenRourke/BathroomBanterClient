@@ -15,7 +15,7 @@ class ViewWashroom extends Component {
       const { id, male, female, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
       return (
         <div>
-          <Link to="/results">Back to Search</Link>
+          <Link to="/results">Back to Results</Link>
           <table className="table">
             <thead>
               <tr>

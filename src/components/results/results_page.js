@@ -10,6 +10,7 @@ class SearchResults extends Component {
   renderResults(washroom) {
     return (
       <tr
+        className="Washroom"
         key={washroom}
         onClick={() => this.props.viewWashroom(washroom, () => {
           this.props.history.push(`/results/${washroom}`);
@@ -23,7 +24,7 @@ class SearchResults extends Component {
     return (
       <div>
         <Link to="/">Back to Search</Link>
-        <table className="table table-striped">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>Washrooms</th>

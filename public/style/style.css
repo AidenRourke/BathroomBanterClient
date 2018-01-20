@@ -1,4 +1,21 @@
+body {
+  background-color: #315659;
+  color: #0A1612;
+}
+
+div a {
+  color: #C6E0FF;
+}
+
 .MainPage {
-  margin: 10vh auto;
-  width: 100vh;
+  border-radius: 10px;
+  background-color: #2978A0;
+  margin: 5vh auto;
+  width: 80%;
+  height: 70vh;
+  padding: 2vh;
+}
+
+.Washroom:hover {
+  cursor: pointer;
 }

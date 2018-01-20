@@ -13,6 +13,7 @@ import ViewWashroom from './components/view/view_washroom';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
+//TO COME: ABILITY TO RATE WASHROOM (Initially, all values will be chosen by us)
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>

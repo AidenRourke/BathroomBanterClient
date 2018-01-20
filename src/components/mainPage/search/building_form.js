@@ -11,6 +11,7 @@ class BuildingForm extends Component {
     this.props.showFloorForm();
   }
 
+  //WILL SOON BE REPLACED BY THE ABILITY TO AUTOMATICALLY SELECT CLOSEST BUILDING
   render() {
     const { handleSubmit } = this.props
     return (
@@ -25,7 +26,7 @@ class BuildingForm extends Component {
           </div>
         </div>
         <div>
-          <button type="submit" className="btn btn-primary">Next</button>
+          <button type="submit" className="btn btn-success btn-sm">Next</button>
         </div>
       </form>
     );

@@ -10,8 +10,9 @@ class MainPage extends Component {
 
   render() {
     return (
-      <div className="MainPage">
-
+      <div>
+        <h1>Bathroom Banter</h1>
+        <h6>Select a building and a floor:</h6>
         <SearchForm changePage={this.changePage.bind(this)}/>
 
       </div>
