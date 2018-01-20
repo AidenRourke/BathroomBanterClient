@@ -9,6 +9,7 @@ import reducers from './reducers';
 
 import MainPage from './components/mainPage/main_page';
 import ResultsPage from './components/results/results_page';
+import ViewWashroom from './components/view/view_washroom';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -17,7 +18,8 @@ ReactDOM.render(
     <BrowserRouter>
       <div className="MainPage">
         <Switch>
-          <Route path='/posts' component={ResultsPage} />
+          <Route path='/results/:id' component={ViewWashroom} />
+          <Route path='/results' component={ResultsPage} />
           <Route path='/' component={MainPage} />
         </Switch>
       </div>

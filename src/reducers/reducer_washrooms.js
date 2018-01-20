@@ -4,8 +4,7 @@ export default function (state = [], action) {
 
   switch (action.type) {
     case GET_WASHROOMS:
-      console.log(action);
-      return [" HP4125"]; //action.payload.listOfWashrooms;
+      return action.payload.data.listOfWashrooms;
 
     default:
       return state;

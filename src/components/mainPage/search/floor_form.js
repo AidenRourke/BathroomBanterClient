@@ -7,9 +7,7 @@ import { getWashrooms } from '../../../actions/index';
 class FloorForm extends Component {
 
   onSubmit(values) {
-    this.props.getWashrooms(this.props.building, values.floor, () => {
-      this.props.changePage();
-    });
+    this.props.getWashrooms(this.props.building, values.floor, this.props.changePage);
   }
 
   renderOptions() {

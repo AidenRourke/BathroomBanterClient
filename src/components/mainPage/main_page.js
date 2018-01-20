@@ -5,7 +5,7 @@ import SearchForm from './search/search_form';
 class MainPage extends Component {
 
   changePage() {
-    this.props.history.push('/posts')
+    this.props.history.push('/results')
   }
 
   render() {
