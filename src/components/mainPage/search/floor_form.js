@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { getWashrooms } from '../../../actions/index';
 
 class FloorForm extends Component {
-  onSubmit() {
-    this.props.getWashrooms(/* Needs building and floor */);
-    this.props.storeFloor(/* Stores the selected floor */)
+
+  onSubmit(values) {
+    this.props.getWashrooms(this.props.building, values.floor, () => {
+      this.props.changePage();
+    });
   }
 
   renderOptions() {
@@ -22,7 +24,7 @@ class FloorForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props
+    const { handleSubmit } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this))} >
         <div className="form-group">
@@ -33,30 +35,32 @@ class FloorForm extends Component {
             </Field>
           </div>
         </div>
-        <div className="btn btn-primary" type="submit">Submit</div>
+        <div>
+          <button className="btn btn-primary" type="submit">Submit</button>
+        </div>
       </form>
     );
+  }
+}
+//Give us access to the number of floors
+function mapStateToProps({ floors, building }) {
+  return {
+    building,
+    floors
   }
 }
 
 function validate(values) {
   const errors = {};
-  if (!values.floors) {
-    errors.floors="Please select a floor"
+  if (!values.floor) {
+    errors.floor="Please select a floor"
   }
   return errors;
 }
 
-//Give us access to the number of floors
-function mapStateToProps({ floors }) {
-  return {
-    floors
-  }
-}
-
 export default reduxForm({
   validate,
-  form: "floors"
+  form: "floor"
 })(
   connect(mapStateToProps, { getWashrooms })(FloorForm)
 );

@@ -20,7 +20,7 @@ class SearchForm extends Component {
   renderFloorForm() {
     if (this.state.building) {
       return (
-        <FloorForm />
+        <FloorForm changePage={this.props.changePage}/>
       )
     }
     return;
@@ -29,7 +29,7 @@ class SearchForm extends Component {
   render() {
     return (
       <div>
-        
+
         <BuildingForm showFloorForm={() => this.changeSate()} />
 
         {this.renderFloorForm()}

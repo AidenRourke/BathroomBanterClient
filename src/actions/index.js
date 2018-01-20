@@ -14,8 +14,10 @@ export function getFloors(building, callback) {
   }
 }
 
-export function getWashrooms(building, floor) {
-  const request = axios.get(`${ROOT_URL}/listOfWashroomsOnFloor?building=${building}&floor=${4}&sort=average_rating`);
+export function getWashrooms(building, floor, callback) {
+  const request = axios.get(`${ROOT_URL}/listOfWashroomsOnFloor?building=${building}&floor=${floor}&sort=average_rating`)
+    .then(() => callback());
+
   return {
     type: GET_WASHROOMS,
     payload: request
