@@ -19,6 +19,7 @@ class BuildingForm extends Component {
         <select className="form-control" { ...input }>
           <option></option>
           <option value="Herzberg+Laboratories">Herzberg Laboratories</option>
+          <option value="Richcraft+Hall">Richcraft Hall</option>
         </select>
         <div className="text-help">
           {field.meta.touched ? field.meta.error : ''}

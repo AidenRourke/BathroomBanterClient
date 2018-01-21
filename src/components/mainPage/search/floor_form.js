@@ -26,15 +26,14 @@ class FloorForm extends Component {
   }
 
   renderOptions() {
-    console.log("render");
-    //don't forget to put an if statement here
-    let options = [<option key={0}></option>];
-    for (let i=0; i < this.props.floors; i++) {
-      options.push(<option value={i+1} key={i+1}>{i+1}</option>)
+    const { floors } = this.props;
+    if (this.props.floors) {
+      let options = [<option key={0}></option>];
+      floors.map(floor => {
+        options.push(<option value={floor} key={floor}>{floor}</option>)
+      });
+      return options;
     }
-    return (
-      options
-    )
   }
 
   render() {
