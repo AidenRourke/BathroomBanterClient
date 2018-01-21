@@ -12,7 +12,7 @@ class ViewWashroom extends Component {
 
   render() {
     if (this.props.selectedWashroom) {
-      const { id, male, female, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
+      const { id, male, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
       return (
         <div>
           <Link to="/results">Back to Results</Link>
