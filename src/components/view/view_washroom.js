@@ -12,7 +12,7 @@ class ViewWashroom extends Component {
 
   render() {
     if (this.props.selectedWashroom) {
-      const { id, male, female, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
+      const { id, male, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
       return (
         <div>
           <Link to="/results">Back to Results</Link>
@@ -28,12 +28,8 @@ class ViewWashroom extends Component {
                 <td>{average_rating}</td>
               </tr>
               <tr>
-                <td>Male</td>
-                <td>{male === 1 ? "Yes" : "No"}</td>
-              </tr>
-              <tr>
-                <td>Female</td>
-                <td>{female === 1 ? "yes" : "No"}</td>
+                <td>Male or Female</td>
+                <td>{male === 1 ? "Male" : "Female"}</td>
               </tr>
               <tr>
                 <td>Cleanliness /5</td>

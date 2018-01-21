@@ -10,7 +10,23 @@ class FloorForm extends Component {
     this.props.getWashrooms(this.props.building, values.floor, this.props.changePage);
   }
 
+  renderFloors(field) {
+    const { input, label } = field;
+    return (
+      <div className={`form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`}>
+        <label>{label}</label>
+        <select className="form-control" {...input} >
+          { this.renderOptions() }
+        </select>
+        <div className="text-help">
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
+      </div>
+    );
+  }
+
   renderOptions() {
+    console.log("render");
     //don't forget to put an if statement here
     let options = [<option key={0}></option>];
     for (let i=0; i < this.props.floors; i++) {
@@ -25,14 +41,7 @@ class FloorForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this))} >
-        <div className="form-group">
-          <label>Floor</label>
-          <div>
-            <Field name="floor" component="select" className="form-control">
-              {this.renderOptions()}
-            </Field>
-          </div>
-        </div>
+        <Field name="floor" component={this.renderFloors.bind(this)} label="Floor" />
         <div>
           <button className="btn btn-primary" type="submit">Submit</button>
         </div>
