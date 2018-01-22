@@ -29,9 +29,9 @@ class FloorForm extends Component {
     const { floors } = this.props;
     if (this.props.floors) {
       let options = [<option key={0}></option>];
-      floors.map(floor => {
+      floors.map(floor =>
         options.push(<option value={floor} key={floor}>{floor}</option>)
-      });
+      );
       return options;
     }
   }

@@ -49,6 +49,7 @@ class ViewWashroom extends Component {
               </tr>
             </tbody>
           </table>
+          <Link className="btn btn-primary" to={`/new/${id}`}>Vote</Link>
         </div>
       );
     }

@@ -10,6 +10,7 @@ import reducers from './reducers';
 import MainPage from './components/mainPage/main_page';
 import ResultsPage from './components/results/results_page';
 import ViewWashroom from './components/view/view_washroom';
+import VoteForm from './components/new/vote_form';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -19,6 +20,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div className="MainPage">
         <Switch>
+          <Route path='/new/:id' component={VoteForm} />
           <Route path='/results/:id' component={ViewWashroom} />
           <Route path='/results' component={ResultsPage} />
           <Route path='/' component={MainPage} />
