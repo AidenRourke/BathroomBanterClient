@@ -1,4 +1,9 @@
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   background-color: #6F1A07;
 }
 
@@ -9,7 +14,10 @@ div a {
 .MainPage {
   border-radius: 10px;
   background-color: #ECF0F1;
-  margin: 5vh auto;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
   width: 80%;
   height: 70vh;
   padding: 2vh;
