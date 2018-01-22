@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
+//Class
 class VoteForm extends Component {
 
   onSubmit(values) {
