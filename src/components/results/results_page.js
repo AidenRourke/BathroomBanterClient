@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { viewWashroom } from '../../actions/index';
+import { viewWashroom, getWashrooms } from '../../actions/index';
 
 //This container will show a list of the washrooms and be clickable
 class SearchResults extends Component {
@@ -13,7 +13,7 @@ class SearchResults extends Component {
         className="Washroom"
         key={washroom}
         onClick={() => this.props.viewWashroom(washroom, () => {
-          this.props.history.push(`/results/${washroom}`);
+          this.props.history.push(`/view/${washroom}`);
         })} >
         <td>{washroom}</td>
       </tr>
@@ -23,7 +23,7 @@ class SearchResults extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Back to Search</Link>
+        <Link to="/form">Back to Search</Link>
         <table className="table table-hover">
           <thead>
             <tr>
@@ -39,8 +39,10 @@ class SearchResults extends Component {
   }
 }
 
-function mapStateToProps( { washrooms }) {
-  return { washrooms };
+function mapStateToProps( { washrooms, gender } ) {
+  return {
+    washrooms
+   };
 }
 
-export default connect(mapStateToProps, { viewWashroom })(SearchResults);
+export default connect(mapStateToProps, { viewWashroom, getWashrooms })(SearchResults);

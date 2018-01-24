@@ -6,20 +6,20 @@ import { getWashrooms } from '../../../actions/index';
 
 class FloorForm extends Component {
 
-  onSubmit(values) {
-    this.props.getWashrooms(this.props.building, values.floor, this.props.changePage);
+  onSubmit({ floor }) {
+    const { building, gender, changePage } = this.props;
+    this.props.getWashrooms(building, floor, gender, changePage);
   }
 
-  renderFloors(field) {
-    const { input, label } = field;
+  renderFloors({ input, label, meta: { touched, error } }) {
     return (
-      <div className={`form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`}>
+      <div className={`form-group ${touched && error ? 'has-danger' : ''}`}>
         <label>{label}</label>
         <select className="form-control" {...input} >
           { this.renderOptions() }
         </select>
         <div className="text-help">
-          {field.meta.touched ? field.meta.error : ''}
+          {touched ? error : ''}
         </div>
       </div>
     );
@@ -27,7 +27,7 @@ class FloorForm extends Component {
 
   renderOptions() {
     const { floors } = this.props;
-    if (this.props.floors) {
+    if (floors) {
       let options = [<option key={0}></option>];
       floors.map(floor =>
         options.push(<option value={floor} key={floor}>{floor}</option>)
@@ -49,8 +49,9 @@ class FloorForm extends Component {
   }
 }
 //Give us access to the number of floors
-function mapStateToProps({ floors, building }) {
+function mapStateToProps({ floors, building, gender }) {
   return {
+    gender,
     building,
     floors
   }

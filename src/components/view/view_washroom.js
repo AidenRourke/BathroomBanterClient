@@ -6,13 +6,13 @@ import { viewWashroom } from '../../actions/index';
 
 class ViewWashroom extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const { id } = this.props.match.params;
     this.props.viewWashroom(id, () => console.log("No Callback"));
   }
 
   render() {
     if (this.props.selectedWashroom) {
-      const { id, male, average_rating, cleanliness, size, toilet_paper, traffic } = this.props.selectedWashroom.data;
+      const { id, male, average_rating, cleanliness, size, toilet_paper, traffic, wheelchair } = this.props.selectedWashroom.data;
       return (
         <div>
           <Link to="/results">Back to Results</Link>
@@ -30,6 +30,10 @@ class ViewWashroom extends Component {
               <tr>
                 <td>Male or Female</td>
                 <td>{male === 1 ? "Male" : "Female"}</td>
+              </tr>
+              <tr>
+                <td>Wheelchair accessible</td>
+                <td>{wheelchair === 1 ? "Yes" : "No"}</td>
               </tr>
               <tr>
                 <td>Cleanliness /5</td>
