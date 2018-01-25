@@ -28,7 +28,7 @@ class VoteForm extends Component {
       "clean" : values.clean,
       "paper" : values.paper,
       "traffic" : values.traffic
-    }).then(this.props.history.push(`/view/${id}`))
+    }).then(this.props.history.push(`/results`))
   }
 
   renderMenu(field) {
@@ -56,7 +56,7 @@ class VoteForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-        <h2>Form for {this.props.match.params.id}</h2>
+        <h2>Vote on {this.props.match.params.id}!</h2>
         <Field name={"rating"} label="Rating" component={this.renderMenu.bind(this)} />
         <Field name="clean" label="Cleanliness" component={this.renderMenu.bind(this)} />
         <Field name="paper" label="Toilet Paper" component={this.renderMenu.bind(this)} />
