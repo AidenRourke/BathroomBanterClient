@@ -10,7 +10,6 @@ const ROOT_URL="http://localhost:8080/";
 
 export function login(username, password, gender) {
   return {
-    //Send username and password to server
     type: LOGIN,
     payload: gender
   }

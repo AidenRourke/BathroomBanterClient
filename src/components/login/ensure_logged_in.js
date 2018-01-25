@@ -9,7 +9,7 @@ class EnsureLoggedIn extends Component {
     if (isLoggedIn) {
       return this.props.children;
     }
-    return <Redirect to="/login" />;
+    return <Redirect to="/login/Login" />;
   }
 }
 
