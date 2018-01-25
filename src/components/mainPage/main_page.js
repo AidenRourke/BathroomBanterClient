@@ -12,7 +12,7 @@ class MainPage extends Component {
     return (
       <div>
         <h1>Bathroom Banter</h1>
-        <h6>Select your gender, a building, and a floor:</h6>
+        <h6>Select your building, and a floor:</h6>
         <SearchForm changePage={this.changePage.bind(this)}/>
       </div>
     );

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import { login } from '../../actions/index';
 
-class SignIn extends Component {
+class SignUp extends Component {
 
   renderField({ input, label, type, meta: { touched, error } }) {
     return (
@@ -44,7 +44,7 @@ class SignIn extends Component {
     //Submit validation
     const { username, password, gender } = values;
 
-    return axios.post(`http://localhost:8080/login`, {
+    return axios.post(`http://localhost:8080/signUp`, {
       username,
       password,
       gender
@@ -62,8 +62,8 @@ class SignIn extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this))}>
-        <h1>Welcome To Bathroom Banter!</h1>
-        <h6>Please sign in to continue:</h6>
+        <Link to="./login/Login">Back to sign in</Link>
+        <h3>Please sign up to continue:</h3>
         <Field
           label="Username"
           type="text"
@@ -76,29 +76,15 @@ class SignIn extends Component {
           component={this.renderField} />
         <Field name="gender" component={this.renderGender} label="Washroom gender" />
         <div>
-          <Link className="btn btn-default" to="/login/SignUp">Sign up</Link>
-          <button className="btn btn-primary" type="submit">Sign In</button>
+          <button className="btn btn-primary" type="submit">Sign up</button>
         </div>
       </form>
     );
   }
 }
 
-function validate(values) {
-  const errors = {};
-
-  const { username, password, gender } = values;
-
-  if(!username) errors.username = "Please select a username";
-  if(!password) errors.password = "Please select a password";
-  if(!gender) errors.gender = "Please select an option";
-
-  return errors;
-}
-
 export default reduxForm({
-  validate,
-  form: "login"
+  form: "Signup"
 })(
-  connect(null, { login })(SignIn)
+  connect(null, { login })(SignUp)
 );
