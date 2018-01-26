@@ -50,16 +50,18 @@ class SignIn extends Component {
       gender
     })
     .then((response) => {
-      this.props.login(values.username, values.password, values.gender);
-      this.props.history.push('/');
-    })
-    .catch((error) => {
-      throw new SubmissionError({ _error: "Login Failed"});
+      if (!response.data.success) {
+        throw new SubmissionError({ _error: "Login Failed"});
+      }
+      else {
+        this.props.login(values.username, values.password, values.gender);
+        this.props.history.push('/');
+      }
     })
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, error } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this))}>
         <h1>Welcome To Bathroom Banter!</h1>
@@ -79,6 +81,9 @@ class SignIn extends Component {
           <Link className="btn btn-default" to="/login/SignUp">Sign up</Link>
           <button className="btn btn-primary" type="submit">Sign In</button>
         </div>
+        <div className="text-help">
+          {error ? error : ''}
+        </div>
       </form>
     );
   }
@@ -87,11 +92,9 @@ class SignIn extends Component {
 function validate(values) {
   const errors = {};
 
-  const { username, password, gender } = values;
-
-  if(!username) errors.username = "Please select a username";
-  if(!password) errors.password = "Please select a password";
-  if(!gender) errors.gender = "Please select an option";
+  if(!values.username) errors.username = "Please select a username";
+  if(!values.password) errors.password = "Please select a password";
+  if(!values.gender) errors.gender = "Please select an option";
 
   return errors;
 }
