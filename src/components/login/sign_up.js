@@ -50,16 +50,18 @@ class SignUp extends Component {
       gender
     })
     .then((response) => {
-      this.props.login(values.username, values.password, values.gender);
-      this.props.history.push('/');
-    })
-    .catch((error) => {
-      throw new SubmissionError({ _error: "Login Failed"});
+      if (response.data.error) {
+        throw new SubmissionError({ _error: response.data.passwordError });
+      }
+      else {
+        this.props.login(values.username, values.password, values.gender);
+        this.props.history.push('/');
+      }
     })
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, error } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this))}>
         <Link to="./login/Login">Back to sign in</Link>
@@ -78,12 +80,26 @@ class SignUp extends Component {
         <div>
           <button className="btn btn-primary" type="submit">Sign up</button>
         </div>
+        <div className="text-help">
+          {error ? error : ''}
+        </div>
       </form>
     );
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if(!values.username) errors.username = "Please select a username";
+  if(!values.password) errors.password = "Please select a password";
+  if(!values.gender) errors.gender = "Please select an option";
+
+  return errors;
+}
+
 export default reduxForm({
+  validate,
   form: "Signup"
 })(
   connect(null, { login })(SignUp)
