@@ -3,7 +3,7 @@ import axios from 'axios';
 export const LOGIN = 'login';
 export const GET_FLOORS = 'get_floors';
 export const GET_WASHROOMS = 'get_washrooms';
-export const STORE_BUILDING = 'store_building';
+export const STORE_INFORMATION = 'store_information';
 export const VIEW_WASHROOM = 'view_washroom';
 
 const ROOT_URL="http://localhost:8080/";
@@ -22,8 +22,8 @@ export function getFloors(building, callback) {
   }
 }
 
-export function getWashrooms(building, floor, gender, callback) {
-  const request = axios.get(`${ROOT_URL}listOfWashroomsOnFloor?building=${building}&floor=${floor}&gender=${gender}&sort=average_rating`)
+export function getWashrooms(building, floor, gender, sort, callback) {
+  const request = axios.get(`${ROOT_URL}listOfWashroomsOnFloor?building=${building}&floor=${floor}&gender=${gender}&sort=${sort}`)
     .then(callback(building, floor, gender))
 
   return {
@@ -32,10 +32,14 @@ export function getWashrooms(building, floor, gender, callback) {
   }
 }
 
-export function storeBuilding(building) {
+export function storeInformation(building, gender, sort) {
   return {
-    type: STORE_BUILDING,
-    payload: building
+    type: STORE_INFORMATION,
+    payload: {
+      building,
+      gender,
+      sort
+    }
   }
 }
 
