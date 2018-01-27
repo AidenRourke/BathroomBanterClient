@@ -7,18 +7,18 @@ class SearchForm extends Component {
   constructor(props) {
     super(props)
     this.state={
-      building: false
+      floorsForm: false
     }
   }
 
   changeSate() {
     this.setState({
-      building: true
+      floorsForm: true
     });
   }
 
   renderFloorForm() {
-    if (this.state.building) {
+    if (this.state.floorsForm === true) {
       return (
         <FloorForm changePage={this.props.changePage}/>
       )

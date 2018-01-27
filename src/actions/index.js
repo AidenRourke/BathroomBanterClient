@@ -8,10 +8,9 @@ export const VIEW_WASHROOM = 'view_washroom';
 
 const ROOT_URL="http://localhost:8080/";
 
-export function login(username, password, gender) {
+export function login(username, password) {
   return {
     type: LOGIN,
-    payload: gender
   }
 }
 
