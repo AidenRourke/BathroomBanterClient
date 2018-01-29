@@ -24,37 +24,20 @@ class SignIn extends Component {
     );
   }
 
-  renderGender({ input, label, type, meta: { touched, error } }) {
-    return (
-      <div className={`form-group ${touched && error ? 'has-danger' : ''}`}>
-        <label>{label}</label>
-        <select className="form-control" {...input}>
-          <option></option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <div className="text-help">
-          {touched ? error : ''}
-        </div>
-      </div>
-    )
-  }
-
   onSubmit(values) {
     //Submit validation
-    const { username, password, gender } = values;
+    const { username, password } = values;
 
     return axios.post(`http://localhost:8080/login`, {
       username,
-      password,
-      gender
+      password
     })
     .then((response) => {
       if (!response.data.success) {
         throw new SubmissionError({ _error: "Login Failed"});
       }
       else {
-        this.props.login(values.username, values.password, values.gender);
+        this.props.login(values.username, values.password);
         this.props.history.push('/');
       }
     })
@@ -76,7 +59,6 @@ class SignIn extends Component {
           type="password"
           name="password"
           component={this.renderField} />
-        <Field name="gender" component={this.renderGender} label="Washroom gender" />
         <div>
           <Link className="btn btn-default" to="/login/SignUp">Sign up</Link>
           <button className="btn btn-primary" type="submit">Sign In</button>
@@ -94,7 +76,6 @@ function validate(values) {
 
   if(!values.username) errors.username = "Please select a username";
   if(!values.password) errors.password = "Please select a password";
-  if(!values.gender) errors.gender = "Please select an option";
 
   return errors;
 }

@@ -2,30 +2,37 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { getFloors, storeBuilding } from '../../../actions/index';
+import { getFloors, storeInformation } from '../../../actions/index';
 
 class BuildingForm extends Component {
   onSubmit(values) {
     this.props.getFloors(values.building); //Gets the number of floors for the building
-    this.props.storeBuilding(values.building); //Stores the building selected
+    this.props.storeInformation(values.building, values.gender, values.sortBy); //Stores the building selected
     this.props.showFloorForm();
   }
 
-  renderMenu(field) {
-    const { input, label } = field;
+  renderMenu({ information, input, label, meta: { touched, error } }) {
     return (
-      <div className={`form-group ${field.meta.touched && field.meta.error ? 'has-danger' : ''}`}>
+      <div className={`form-group ${touched && error ? 'has-danger' : ''}`}>
         <label>{label}</label>
-        <select className="form-control" { ...input }>
-          <option></option>
-          <option value="Herzberg+Laboratories">Herzberg Laboratories</option>
-          <option value="Richcraft+Hall">Richcraft Hall</option>
+        <select className="form-control" {...input} >
+          { this.renderOptions(information) }
         </select>
         <div className="text-help">
-          {field.meta.touched ? field.meta.error : ''}
+          {touched ? error : ''}
         </div>
       </div>
-    );
+    )
+  }
+
+  renderOptions(information) {
+    if (information) {
+      let options = [<option key={0}></option>];
+      information.map(item =>
+        options.push(<option value={item.value} key={item.value}>{item.name}</option>)
+      );
+      return options;
+    }
   }
 
 
@@ -34,7 +41,31 @@ class BuildingForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
-        <Field name="building" component={this.renderMenu} label="Building"/>
+        <Field name="gender"
+          component={this.renderMenu.bind(this)}
+          label="Gender"
+          information={[
+            {name: "Male", value: "Male"},
+            {name: "Female", value: "Female"}
+          ]}/>
+        <Field
+          name="sortBy"
+          component={this.renderMenu.bind(this)}
+          label="Sort By"
+          information={[
+            {name: "Average Rating", value: "average_rating"},
+            {name: "Cleanliness", value: "cleanliness"},
+            {name: "Toilet Paper", value: "toilet_paper"},
+            {name: "Traffic", value: "traffic"}
+          ]}/>
+        <Field
+          name="building"
+          component={this.renderMenu.bind(this)}
+          label="Building"
+          information={[
+            {name: "Herzberg Laboratories", value: "Herzberg+Laboratories"},
+            {name: "Richcraft Hall", value: "Richcraft+Hall"}
+          ]}/>
         <div>
           <button type="submit" className="btn btn-success btn-sm">Next</button>
         </div>
@@ -47,7 +78,13 @@ function validate(values) {
   const errors = {};
 
   if (!values.building) {
-    errors.building= "Please select a building";
+    errors.building="Please select a building";
+  }
+  if (!values.gender) {
+    errors.gender="Please select a gender";
+  }
+  if (!values.sortBy) {
+    errors.sortBy="Please select a sort";
   }
 
   return errors;
@@ -57,5 +94,5 @@ export default reduxForm({
   form: "building",
   validate
 })(
-  connect(null, { getFloors, storeBuilding })(BuildingForm)
+  connect(null, { getFloors, storeInformation })(BuildingForm)
 );

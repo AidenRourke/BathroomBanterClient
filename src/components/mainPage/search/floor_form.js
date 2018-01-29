@@ -7,8 +7,8 @@ import { getWashrooms } from '../../../actions/index';
 class FloorForm extends Component {
 
   onSubmit({ floor }) {
-    const { building, gender, changePage } = this.props;
-    this.props.getWashrooms(building, floor, gender, changePage);
+    const { changePage, information: { building, gender, sort } } = this.props;
+    this.props.getWashrooms(building, floor, gender, sort, changePage);
   }
 
   renderFloors({ input, label, meta: { touched, error } }) {
@@ -49,11 +49,10 @@ class FloorForm extends Component {
   }
 }
 //Give us access to the number of floors
-function mapStateToProps({ floors, building, gender }) {
+function mapStateToProps({ floors, information }) {
   return {
-    gender,
-    building,
-    floors
+    floors,
+    information
   }
 }
 
