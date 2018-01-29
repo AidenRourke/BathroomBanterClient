@@ -26,3 +26,8 @@ div a {
 .Washroom:hover {
   cursor: pointer;
 }
+
+.search-bar{
+  margin: 20px;
+  text-align:center;
+}
