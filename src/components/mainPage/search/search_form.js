@@ -5,7 +5,7 @@ import FloorForm from './floor_form';
 
 class SearchForm extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state={
       floorForm: false
     }
