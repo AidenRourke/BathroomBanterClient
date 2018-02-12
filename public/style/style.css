@@ -4,7 +4,7 @@ html {
 
 body {
   height: 100%;
-  background-color: #6F1A07;
+  background-color: #CCFFFF;
 }
 
 div a {
@@ -25,4 +25,9 @@ div a {
 
 .Washroom:hover {
   cursor: pointer;
+}
+
+.search-bar{
+  margin: 20px;
+  text-align:center;
 }
