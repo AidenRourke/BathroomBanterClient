@@ -33,7 +33,7 @@ class SignIn extends Component {
       password
     })
     .then((response) => {
-      if (!response.data.success) {
+      if (response.data.error) {
         throw new SubmissionError({ _error: "Login Failed"});
       }
       else {
